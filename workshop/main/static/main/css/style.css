@@ -1,0 +1,449 @@
+/*Регистрация и вход*/
+.login {
+    margin-left: 900px;
+    margin-top: 300px;
+    list-style-type: none;
+    width: 190px;
+}
+
+.registration {
+    margin-left: 900px;
+    margin-top: 250px;;
+    list-style-type: none;
+    width: 190px;
+}
+
+
+/*Левая панель главная страница*/
+.aside_left {
+    float: left;
+    width: 11%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: black;
+    border-right: 3px solid orange;
+    position: fixed;
+    overflow-x: hidden;
+    opacity: 0.95;
+}
+
+.aside-left ul {list-style: none;}
+.aside_left ul a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 30px;
+    transition: transform .3s ease;
+}
+
+.aside-left ul:hover, .aside_left ul a:hover {
+    color: orange;
+    text-decoration: none;
+    transform: scale(1.09);
+}
+
+.image {
+    max-width: 95%;
+    object-fit: cover;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+.links {
+    margin-top: 130px;
+}
+
+
+/*Данные пользователя в левой панели*/
+.register li a {
+    margin-right: 2px;
+    margin-left: 3px;
+}
+.register li {
+    display: inline-block;
+}
+.register {
+    margin-top: 200px;
+    color: orange;
+}
+
+
+/*Создание новой заявки на обслуживание*/
+.new_application {
+    margin-left: 250px;
+    margin-top: 15px;
+}
+
+.new_title_application {
+    margin-left: 250px;
+    margin-top: 10px;
+}
+
+.new_application_car {
+    margin-left: 250px;
+    margin-top: 10px;
+    width: 250px;
+}
+
+.new_application_desc {
+    margin-left: 250px;
+    margin-top: 15px;
+    width: 600px;
+    resize: none;
+}
+
+.button_new_application {
+    margin-left: 250px;
+    margin-top: 15px;
+    width: 200px;
+}
+
+
+/*Дополнение заявки мастером*/
+.master_places_to_work {
+    width: 350px;
+}
+
+.master_type_repair {
+    width: 350px;
+}
+
+.master_parts {
+    width: 350px;
+}
+
+.master_users {
+    width: 350px;
+}
+
+.master_completion_time {
+    width: 350px;
+}
+
+.master_application_status {
+    width: 350px;
+}
+
+
+/*Дополнение заявки менеджером*/
+.manager_description {
+    width: 800px;
+    height: 150px;
+    resize: none;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+.manager_time_to_work {
+    width: 250px;
+}
+
+.manager_completion_time {
+    width: 250px;
+}
+
+
+/*Дополнение заявки рабочим*/
+.worker_application_status {
+    width: 240px;
+}
+
+/*Обновление заявки*/
+.application_update {
+    margin-left: 300px;
+}
+
+.application_update button {
+    width: 170px;
+}
+
+.application_update a {
+    margin-left: 10px;
+    width: 150px;
+}
+
+
+/*Таблица всех заявок пользователей*/
+.table1-success {
+    border-radius: 5px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 89%;
+    max-width: 89%;
+    margin-left: auto;
+}
+.table1-success tr, .table1-success td {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    font-family: Helvetica, sans-serif;
+    border: 1px solid orange;
+    vertical-align: top;
+}
+.table1-success th {
+    color: orange;
+    background: #337AB7;
+    font-weight: bold;
+    border: 1px solid orange;
+    text-transform: uppercase;
+    text-align: center;
+}
+.table1-success tr:nth-child(even) {
+    background: #edf7ff;
+}
+.table1-success td span {
+    background: #337AB7;
+    color: #FFF;
+    display: none;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+@media(max-width: 768px) {
+    .table1-success thead {
+        display: none;
+    }
+    .table1-success tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .table1-success td {
+        margin: 0 -1px -1px 0;
+        padding-top: 35px;
+        position: relative;
+        width: 89%;
+    }
+    .table1-success td span {
+        display: block;
+    }
+}
+@media(max-width: 480px) {
+    .table1-success td {
+        width: 89%;
+    }
+}
+
+
+/*Детальный просмотр заявок*/
+.detail_application {
+    margin-top: 10px;
+    margin-left: 250px;
+}
+
+.detail_application .alert-secondary {
+    width: 850px;
+    height: 200px;
+    word-wrap: break-word;
+    overflow: auto;
+}
+.detail_application .alert-dark {
+    width: 370px;
+}
+
+.detail_application .alert-success {
+    width: 370px;
+}
+
+
+/*Отступ снизу, от кнопок при детальном просмотре заявок*/
+.application_update a {
+    margin-bottom: 25px;
+}
+.application_update button {
+    margin-bottom: 25px;
+}
+
+
+/*Пагинация на странице отображения всех заявок*/
+.pagination {
+    text: 16px;
+    margin-left: 250px;
+    display: inline-block;
+}
+
+.pagination li {
+    color: black;
+    padding: 1px 8px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+.pagination li:hover:not(.active) {background-color: orange;}
+
+.pagination .active {
+  background-color: orange;
+  color: white;
+}
+
+
+/*Отображение всех клиентов*/
+.client_all {
+    width: 700px;
+    margin-top: 20px;
+    margin-left: 250px;
+}
+
+
+/*Отображение всех сотрудников*/
+.employees_all {
+    width: 700px;
+    margin-top: 20px;
+    margin-left: 250px;
+}
+
+
+/*Отправить уведомление клиенту о выполнении заявки, отступ слева*/
+.users_resolution {
+    margin-left: 278px;
+}
+
+
+/* Кнопка уведомления клиента о завершении работ*/
+.css-modal-open {
+    display: inline-flex;
+    margin: 5px;
+    width: 180px;
+    text-decoration: none;
+    position: relative;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 8px;
+    border-radius: 6px;
+    color: #FFF;
+    text-transform: uppercase;
+    text: center;
+    font-family: 'Roboto', Тahoma, sans-serif;
+    background: #3CB371;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+}
+.css-modal-open:hover,
+.css-modal-open:active,
+.css-modal-open:focus {
+    color: #FFF;
+}
+.css-modal-open:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -50px;
+    bottom: 0;
+    left: 0;
+    border-right: 50px solid transparent;
+    border-top: 50px solid #3CB371;
+    transition: transform 0.5s;
+    transform: translateX(-100%);
+    z-index: -1;
+}
+.css-modal-open:hover:before,
+.css-modal-open:active:before,
+.css-modal-open:focus:before {
+    transform: translateX(0);
+}
+
+/* Контейнер, который затемняет страницу */
+.css-modal-target {
+    display: none;
+}
+.css-modal-target:target {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 4;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    animation: bg 0.6s ease;
+    background: rgba(169, 169, 169, 0.5);
+}
+
+/* Модальное окно */
+.css-modal-target .cmt {
+    font-family: Verdana, sans-serif;
+    font-size: 18px;
+    padding: 20px;
+    width: 80%;
+    z-index: 8;
+    max-width: 350px;
+    max-height: 70%;
+    transition: 0.4s;
+    border: 3px solid #3CB371;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    overflow: auto;
+    animation: scale 0.5s ease;
+}
+
+/* Кнопка с крестиком закрывающая окно */
+.css-modal-close {
+    position: relative;
+    display: block;
+}
+.css-modal-close:after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border: 3px solid #3CB371;
+    border-radius: 12px;
+    position: fixed;
+    z-index: 10;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23337AB7' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cline x1='18' y1='6' x2='6' y2='18'%3e%3c/line%3e%3cline x1='6' y1='6' x2='18' y2='18'%3e%3c/line%3e%3c/svg%3e");
+    background-color: #FFF;
+    background-size: cover;
+    animation: move 0.5s ease;
+}
+.css-modal-close:before {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    content: "";
+    cursor: default;
+}
+
+/* Анимации */
+@keyframes scale {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes move {
+    0% {
+        right: -80px;
+    }
+    100% {
+        right: 20px;
+    }
+}
+@keyframes bg {
+    0% {
+        background: rgba(169, 169, 169, 0);
+    }
+    100% {
+        background: rgba(169, 169, 169, 0.5);
+    }
+}

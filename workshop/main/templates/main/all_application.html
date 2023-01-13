@@ -1,0 +1,98 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Все заявки{% endblock %}
+
+{% block content %}
+<!--Таблица отображения заявок пользователей-->
+<table class="table table1-success table-striped">
+  <thead>
+    <tr>
+      <th>Заявка №</th>
+      <th>Автомобиль</th>
+      <th>VIN-номер</th>
+      <th>Год выпуска</th>
+      <th>Рег. номер</th>
+      <th>Имя клиента</th>
+      <th>Место ремонта</th>
+      <th>Тип ремонта</th>
+      <th>Время принятия в работу</th>
+      <th>Статус</th>
+      <th>Открыть</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for application in object_list %}
+    <tr>
+      <td>{{ application.id }}</td>
+      <td>{{ application.car }}</td>
+      {% if application.car_vin %}
+        <td>{{ application.car_vin }}</td>
+      {% else %}
+        <td>Не назначено</td>
+      {% endif %}
+      {% if application.year %}
+        <td>{{ application.year }}</td>
+      {% else %}
+        <td>Не назначено</td>
+      {% endif %}
+      {% if application.state_number %}
+        <td>{{ application.state_number }}</td>
+      {% else %}
+        <td>Не назначено</td>
+      {% endif %}
+      {% if application.name_client %}
+        <td class="bi bi-person-fill"> {{ application.name_client }}</td>
+      {% else %}
+        <td>Не назначено</td>
+      {% endif %}
+      {% if application.places_to_work %}
+        <td>{{ application.places_to_work }}</td>
+      {% else %}
+        <td>Не назначено</td>
+      {% endif %}
+      {% if application.type_repair %}
+        <td>{{ application.type_repair }}</td>
+      {% else %}
+        <td>Не назначено</td>
+      {% endif %}
+      {% if application.time_to_work %}
+        <td>{{ application.time_to_work }}</td>
+      {% else %}
+        <td>Не назначено</td>
+      {% endif %}
+      {% if application.status == 'CREATED' %}
+        <td class="bi bi-check-circle"> {{ application.get_status_display }}</td>
+      {% else %}
+        <td class="bi bi-check-circle-fill"> {{ application.get_status_display }}</td>
+      {% endif %}
+      <td>
+        <a href="{% url 'detail_application' application.id %}">Открыть</a>
+      </td>
+    </tr>
+  <tr>
+  {% endfor %}
+  </tbody>
+</table>
+<!--Пагинация страниц-->
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }}<span class="sr-only"></span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}" >{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}

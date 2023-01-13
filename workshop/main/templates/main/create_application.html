@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Новая заявка{% endblock %}
+
+{% block content %}
+    <form action="{% url 'create_application' %}" method="post">
+        <div class="new_title_application">
+            <h3>Создать новую заявку на ремонт</h3>
+        </div>
+        <div>
+            {% csrf_token %}
+            {{form.car}}<br>
+            {{form.car_vin}}<br>
+            {{form.year}}<br>
+            {{form.state_number}}<br>
+            {{form.name_client}}<br>
+            {{form.description}}<br>
+            <div class="button_new_application">
+                <button class="btn btn-warning" type="submit">Оставить заявку</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Детальный просмотр заявки{% endblock %}
+
+{% block content %}
+    {% if user.role == 'CUSTOMER' %}
+        {% include 'main/detail_application.html' %}
+        <hr>
+        <form class="application_update" action="" method="post">
+            {{form.as_p}}
+            {% csrf_token %}
+            <a href="{%  url 'all_application' %}" class="btn btn-danger">Назад</a>
+        </form>
+    {% endif %}
+    {% if user.role == 'MANAGER' %}
+        {% include 'main/detail_application.html' %}
+        <hr>
+        <form class="application_update" action="" method="post">
+            {{form.as_p}}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">Обновить заявку</button>
+            <a href="{%  url 'all_application' %}" class="btn btn-danger">Назад</a>
+        </form>
+    {% endif %}
+    {% if user.role == 'MASTER' %}
+        {% include 'main/detail_application.html' %}
+        <hr>
+        <form class="application_update" action="" method="post">
+            {{form.as_p}}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">Обновить заявку</button>
+            <a href="{%  url 'all_application' %}" class="btn btn-danger">Назад</a>
+        </form>
+    {% endif %}
+    {% if user.role == 'WORKER' %}
+        {% include 'main/detail_application.html' %}
+        <hr>
+        <form class="application_update" action="" method="post">
+            {{form.as_p}}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">Обновить заявку</button>
+            <a href="{%  url 'all_application' %}" class="btn btn-danger">Назад</a>
+        </form>
+    {% endif %}
+{% endblock %}

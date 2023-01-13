@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="detail_application">
+        <h3>Детальный просмотр {{ application }}</h3>
+    </div>
+    <hr>
+    <ul class="detail_application">
+    <li >
+        <div class="alert alert-secondary">
+            <strong>Описание:</strong> {{ application.description }}
+        </div>
+    </li>
+    <li>
+        <strong>Все участники:</strong>
+        <ul>
+            {% for user in application.users.all %}
+                <li><strong>{{ user.get_role_display }}:</strong>
+                    {{ user.first_name }} {{ user.last_name }}<br>
+                    Контактный телефон: {{ user.phone }}<br>
+                    Почта: {{ user.email }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li><strong>Автомобиль:</strong> {{ application.car}}</li>
+    {% if application.places_to_work %}
+        <li><strong>Место ремонта:</strong> {{ application.places_to_work }}</li>
+    {% endif %}
+    {% if application.time_to_work %}
+        <li><strong>Время начала ремонта:</strong> {{ application.time_to_work }}</li>
+    {% endif %}
+    {% if application.type_repair %}
+        <li><strong>Тип ремонта:</strong> {{ application.type_repair }}</li>
+    {% endif %}
+    {% if application.parts.all %}
+        <li>
+            <strong>Запчасти:</strong>
+            <ul>
+                {% for part in application.parts.all %}
+                    <li>{{ part.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endif %}
+    {% if application.status == 'VERIFICATION' %}
+        <li class="alert alert-success"><strong>Статус:</strong > {{ application.get_status_display }}</li>
+        {% else %}
+        <li class="alert alert-dark"><strong>Статус:</strong > {{ application.get_status_display }}</li>
+    {% endif %}
+</ul>
+<div class="users_resolution">
+    {% if user.role == 'MANAGER' %}
+        {% if application.status == 'VERIFICATION' %}
+            <!-- Кнопка -->
+            <div class="css-modal-target-container">
+                <a class="css-modal-open" href="#sending_an_email">Уведомить клиента</a>
+            </div>
+            <!-- Модальное окно -->
+            <div class="css-modal-target" id="sending_an_email">
+                <div class="cmt">
+                    <a href="{% url 'send_email' %}">Email уведомление на почту!</a>
+                </div>
+                <a href="#close" class="css-modal-close"></a>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

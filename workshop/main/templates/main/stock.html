@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Склад{% endblock %}
+
+{% block content %}
+<!--Таблица отображения заявок пользователей-->
+<table class="table table1-success table-striped">
+  <thead>
+    <tr>
+      <th>ID детали</th>
+      <th>Наименование</th>
+      <th>Бренд</th>
+      <th>Осталось</th>
+      <th>Цена</th>
+      <th>Общая стоимость</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in object_list %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.brand }}</td>
+      <td>{{ i.count_parts }} шт.</td>
+      <td>{{ i.price }} руб. за 1 шт.</td>
+      <td>{{ price_total }}</td>
+    </tr>
+  <tr>
+  {% endfor %}
+  </tbody>
+</table>
+<!--Пагинация страниц-->
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }}<span class="sr-only"></span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}" >{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}

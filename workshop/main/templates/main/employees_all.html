@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Все сотрудники{% endblock %}
+
+{% block content %}
+<!--Таблица отображения заявок пользователей-->
+<table class="table table1-success table-striped">
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Должность сотрудника</th>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Почта</th>
+      <th>Телефон</th>
+      <th>Активен</th>
+      <th>Дата регистрации</th>
+      <th>Дата последнего входа</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in object_list %}
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.get_role_display }}</td>
+      <td>{{ i.first_name }}</td>
+      <td>{{ i.last_name }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.is_active }}</td>
+      <td>{{ i.date_joined }}</td>
+      <td>{{ i.last_login }}</td>
+    </tr>
+  <tr>
+  {% endfor %}
+  </tbody>
+</table>
+<!--Пагинация страниц-->
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }}<span class="sr-only"></span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}" >{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}
