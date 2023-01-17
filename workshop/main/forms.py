@@ -71,6 +71,12 @@ class ManagerForm(forms.ModelForm):
         fields = ['description', 'time_to_work', 'completion_time', 'status']
 
 
+class EmailForm(forms.Form):
+    """Отправка Email уведомления на почту клиента"""
+    recipient = forms.EmailField(label='Email клиента')
+    message = forms.CharField(widget=forms.Textarea, label='Сообщение')
+
+
 class MasterForm(forms.ModelForm):
     """Модель отображения заявок мастеру"""
     places_to_work = forms.ModelChoiceField(

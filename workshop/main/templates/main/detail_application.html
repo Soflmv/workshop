@@ -56,14 +56,7 @@
         {% if application.status == 'VERIFICATION' %}
             <!-- Кнопка -->
             <div class="css-modal-target-container">
-                <a class="css-modal-open" href="#sending_an_email">Уведомить клиента</a>
-            </div>
-            <!-- Модальное окно -->
-            <div class="css-modal-target" id="sending_an_email">
-                <div class="cmt">
-                    <a href="{% url 'send_email' %}">Email уведомление на почту!</a>
-                </div>
-                <a href="#close" class="css-modal-close"></a>
+                <a class="css-modal-open" href="{% url 'send_email' %}">Уведомить клиента</a>
             </div>
         {% endif %}
     {% endif %}

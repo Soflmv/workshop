@@ -53,10 +53,9 @@ class Works(models.Model):
 
 class Parts(models.Model):
     """Запчасти"""
-    name = models.CharField(max_length=255, verbose_name='Тип детали')
+    name = models.CharField(max_length=255, verbose_name='Тип детали', null=True, blank=True)
     brand = models.CharField(max_length=255, default='', verbose_name='Бренд детали')
-    price = models.IntegerField(default=0, verbose_name='Цена детали')
-    all_price = models.IntegerField(default=0, verbose_name='Общая сумма деталей')
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='Цена детали')
     count_parts = models.IntegerField(default=0, verbose_name='Количество деталей')
 
     class Meta:
@@ -64,7 +63,7 @@ class Parts(models.Model):
         verbose_name_plural = 'Типы деталей'
 
     def __str__(self):
-        return f'{self.name}{self.brand}{self.price}{self.all_price}{self.count_parts}'
+        return f'{self.name}\n{self.brand}\nОсталось: {self.count_parts} шт.'
         
 
 class CarBrand(models.Model):

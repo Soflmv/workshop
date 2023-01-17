@@ -1,17 +1,23 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.views import View
 from django.views.generic import FormView, ListView
 from django.contrib.auth import get_user_model
 
 from .forms import CustomerForm, ManagerForm, MasterForm, WorkerForm
-from .mixins import ApplicationMixin
+from .mixins import ApplicationMixin, CustomerLoginRequiredMixin
 from .models import Application, Parts
 from users.models import Role, CustomUser
+
+from django.shortcuts import render
+from .forms import EmailForm
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 User = get_user_model()
 
 
-class DetailApplicationView(ApplicationMixin, View):
+class DetailApplicationView(CustomerLoginRequiredMixin, ApplicationMixin, View):
     """Детальный просмотр заявок"""
     template_name = 'main/detail_users_all.html'
 
@@ -51,7 +57,7 @@ class DetailApplicationView(ApplicationMixin, View):
         return render(request, self.template_name, context)
 
 
-class ListApplicationView(ApplicationMixin, ListView):
+class ListApplicationView(CustomerLoginRequiredMixin, ApplicationMixin, ListView):
     """Отображение всех заявок"""
     template_name = 'main/all_application.html'
     model = Application
@@ -63,8 +69,8 @@ class ListApplicationView(ApplicationMixin, ListView):
         return Application.objects.filter(**_filter).order_by('-pk')
 
 
-class CreateApplicationView(FormView):
-    """Создание и проверка правильности заполнения новой заявки пользователем"""
+class CreateApplicationView(CustomerLoginRequiredMixin, FormView):
+    """Создание и проверка правильности заполнения новой заявки аутентифицированным пользователем"""
     template_name = 'main/create_application.html'
     form_class = CustomerForm
     success_url = '/main/all_application/'
@@ -75,7 +81,7 @@ class CreateApplicationView(FormView):
         return super().form_valid(form)
 
 
-class ClientAllView(ListView):
+class ClientAllView(CustomerLoginRequiredMixin, ListView):
     """Отображение всех пользователей"""
     model = CustomUser
     template_name = 'main/client_all.html'
@@ -84,7 +90,7 @@ class ClientAllView(ListView):
         return CustomUser.objects.filter(role='CUSTOMER').order_by('-id')
 
 
-class EmployeesAllView(ListView):
+class EmployeesAllView(CustomerLoginRequiredMixin, ListView):
     """Отображение всех сотрудников"""
     model = CustomUser
     template_name = 'main/employees_all.html'
@@ -93,20 +99,37 @@ class EmployeesAllView(ListView):
         return CustomUser.objects.exclude(role='CUSTOMER').order_by('-last_login')
 
 
-class Stock(ListView):
+class Stock(CustomerLoginRequiredMixin, ListView):
     """Склад запчастей"""
     model = Parts
     template_name = 'main/stock.html'
 
-    def all_price(self, request):
-
-        return render(request, self.template_name)
-
-
-class SendEmailView(ListView):
-    """Отправка сообщения на почту о завершении работ"""
-    pass
+    def get_queryset(self):
+        return Parts.objects.all()
 
 
+# Отправка сообщения на почту о завершении работ
+def send_email(request):
 
+    messageSent = False
 
+    if request.method == 'POST':
+
+        form = EmailForm(request.POST)
+
+        # проверить, являются ли данные из формы правильными
+        if form.is_valid():
+            cd = form.cleaned_data
+            subject = "Ваша заявка на ремонт автомобиля выполнена!"
+            message = cd['message']
+
+            # отправить письмо получателю
+            send_mail(subject, message,
+                      settings.DEFAULT_FROM_EMAIL, [cd['recipient']])
+
+            messageSent = True
+
+    else:
+        form = EmailForm()
+
+    return render(request, 'main/send_email.html', {'form': form, 'messageSent': messageSent})

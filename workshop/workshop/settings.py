@@ -134,3 +134,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = '/users/login/'
+
+# свой аккаунт gmail
+DEFAULT_FROM_EMAIL = 'testemailz744@gmail.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# свой аккаунт gmail
+EMAIL_HOST_USER = 'testemailz744@gmail.com'
+# пароль приложения
+EMAIL_HOST_PASSWORD = 'kklpvgtrsdxprlxy'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
