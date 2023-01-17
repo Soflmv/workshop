@@ -55,8 +55,8 @@
     {% if user.role == 'MANAGER' %}
         {% if application.status == 'VERIFICATION' %}
             <!-- Кнопка -->
-            <div class="css-modal-target-container">
-                <a class="css-modal-open" href="{% url 'send_email' %}">Уведомить клиента</a>
+            <div class="button_user_email">
+                <a class="btn btn-success" href="{% url 'send_email' %}">Уведомить клиента</a>
             </div>
         {% endif %}
     {% endif %}

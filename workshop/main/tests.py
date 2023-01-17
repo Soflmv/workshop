@@ -1,6 +1,3 @@
-import smtplib
-from email.mime.text import MIMEText
-
 from django.test import TestCase
 
 # Create your tests here.

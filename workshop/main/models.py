@@ -12,6 +12,7 @@ class Status(models.TextChoices):
     VERIFICATION = 'VERIFICATION', 'Ремонт выполнен'
     TESTS = 'TESTS', 'На проверку'
     RE_REPAIR = 'RE_REPAIR', 'На доработку'
+    INTO_ARCHIVE = 'INTO_ARCHIVE', 'В архив'
 
 
 class PlacesToWork(models.Model):

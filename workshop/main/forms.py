@@ -62,7 +62,7 @@ class ManagerForm(forms.ModelForm):
         widget=forms.RadioSelect(attrs={'class': 'manager_application'}),
         label='Статус заявки',
         choices=[
-            item for item in Status.choices if item[0] in 'CONFIRMED'
+            item for item in Status.choices if item[0] in ('CONFIRMED', 'INTO_ARCHIVE')
         ]
     )
 
@@ -73,8 +73,8 @@ class ManagerForm(forms.ModelForm):
 
 class EmailForm(forms.Form):
     """Отправка Email уведомления на почту клиента"""
-    recipient = forms.EmailField(label='Email клиента')
-    message = forms.CharField(widget=forms.Textarea, label='Сообщение')
+    recipient = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
 
 
 class MasterForm(forms.ModelForm):

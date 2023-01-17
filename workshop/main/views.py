@@ -85,6 +85,7 @@ class ClientAllView(CustomerLoginRequiredMixin, ListView):
     """Отображение всех пользователей"""
     model = CustomUser
     template_name = 'main/client_all.html'
+    paginate_by = 23
 
     def get_queryset(self):
         return CustomUser.objects.filter(role='CUSTOMER').order_by('-id')
@@ -94,18 +95,30 @@ class EmployeesAllView(CustomerLoginRequiredMixin, ListView):
     """Отображение всех сотрудников"""
     model = CustomUser
     template_name = 'main/employees_all.html'
+    paginate_by = 23
 
     def get_queryset(self):
         return CustomUser.objects.exclude(role='CUSTOMER').order_by('-last_login')
 
 
-class Stock(CustomerLoginRequiredMixin, ListView):
+class StockView(CustomerLoginRequiredMixin, ListView):
     """Склад запчастей"""
     model = Parts
     template_name = 'main/stock.html'
+    paginate_by = 23
 
     def get_queryset(self):
         return Parts.objects.all()
+
+
+class ArchiveView(CustomerLoginRequiredMixin, ListView):
+    """Архив выполненных заявок"""
+    model = Application
+    template_name = 'main/archive.html'
+    paginate_by = 23
+
+    def get_queryset(self):
+        return Application.objects.filter(status__istartswith='INTO_ARCHIVE')
 
 
 # Отправка сообщения на почту о завершении работ

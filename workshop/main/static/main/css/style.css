@@ -311,68 +311,24 @@
 
 
 /* Кнопка уведомления клиента о завершении работ*/
-.css-modal-open {
-    display: inline-flex;
-    margin: 5px;
-    width: 180px;
-    text-decoration: none;
-    position: relative;
-    font-size: 14px;
-    line-height: 20px;
-    padding: 8px 8px;
-    border-radius: 6px;
-    color: #FFF;
-    text-transform: uppercase;
-    text: center;
-    font-family: 'Roboto', Тahoma, sans-serif;
-    background: #3CB371;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 1;
-}
-.css-modal-open:hover,
-.css-modal-open:active,
-.css-modal-open:focus {
-    color: #FFF;
-}
-.css-modal-open:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -50px;
-    bottom: 0;
-    left: 0;
-    border-right: 50px solid transparent;
-    border-top: 50px solid #3CB371;
-    transition: transform 0.5s;
-    transform: translateX(-100%);
-    z-index: -1;
-}
-.css-modal-open:hover:before,
-.css-modal-open:active:before,
-.css-modal-open:focus:before {
-    transform: translateX(0);
+.button_user_email {
+    margin-left: 5px;
 }
 
 
 /*Отправка Email уведомления клиенту о завершении работ*/
-.send_email_client {
-    margin-right: 120px;
-    margin-top: 10px;
-}
-
-.container  {
-    margin-top: 15px;
-    right: 70px;
-}
-
-.container h6 {
+.email_status {
     width: 450px;
+    margin-left: 230px;
     margin-top: 15px;
 }
 
-.container a {
-    width: 200px;
+.email_status a{
+    width: 150px;
+}
+
+.send_email_client {
+    width: 700px;
+    margin-left: 230px;
     margin-top: 15px;
-    margin-right: 50px;
 }

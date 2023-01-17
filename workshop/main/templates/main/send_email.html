@@ -17,18 +17,25 @@
   </head>
   <body>
     {% if messageSent %}
-    <div class="container">
-      <h3><strong>Отправка Email уведомления</strong></h3>
-      <h6 class="alert alert-success">Сообщение было успешно отправлено клиенту!</h6>
-      <a class="btn btn-danger" href="{% url 'all_application' %}">Назад</a>
+    <div class="email_status">
+      <div class="container">
+        <h3><strong>Статус Email уведомления</strong></h3>
+        <h6 class="alert alert-success">Сообщение было успешно отправлено клиенту!</h6>
+        <a class="btn btn-danger" href="{% url 'all_application' %}">Назад</a>
+      </div>
     </div>
     {% else %}
     <div class="send_email_client">
       <div class="container">
-      <h3><strong>Отправка Email уведомления клиенту!</strong></h3>
+      <h3><strong>Отправка Email уведомления!</strong></h3>
 
-      <form method="post">
-        {% csrf_token %} {{ form.as_p }}
+      <form class="email_message" method="post">
+        {% csrf_token %}
+          Email клиента<br>
+          {{ form.recipient }}
+        <br>
+          Текст сообщения<br>
+          {{ form.message }}
         <br />
           <input type="submit" class="btn btn-success" >
       </form>
